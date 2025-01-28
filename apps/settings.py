@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ["127.0.0.1", ".vercel.app", "localhost"]
 # Application definition
 
 INSTALLED_APPS = [
+    "money.apps.MoneyConfig",
     "login.apps.LoginConfig",
     "django.contrib.admin",
     "django.contrib.auth",

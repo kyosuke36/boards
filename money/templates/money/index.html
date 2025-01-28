@@ -1,0 +1,39 @@
+{% load static %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'money/css/style.css' %}">
+</head>
+
+<body>
+    <div class="contner">
+        <div class="content1">
+            <h2>節約日記</h2>
+            <form action="{% url 'money:create' %}" method="post">
+                {% csrf_token %}
+                <fieldset>
+                    節約する目的<input type="text" name="purpose">
+                    継続する日数<select name="day">
+                        <option>7</option>
+                        <option>10</option>
+                        <option>20</option>
+                        <option>30</option>
+                        </select>
+                        日
+                    １日の制限する金額<input type="text" name="text" placeholder="例:1000">円
+                </fieldset>
+                <input type="submit" value="登録">
+            </form>
+
+            <div class="content2">
+                <ul>
+                {% for money in money_list %}
+                
+                    <li>{{ money.purpose_text }}
+                        <a href="{% url 'money:result' money.id %}">節約判定</a>
+                        <a href="{% url 'money:delete' money.id %}">諦める</a>
+                    </li>
+                {% endfor %}
+                </ul>
+            </div>
+        </div>
+</body>

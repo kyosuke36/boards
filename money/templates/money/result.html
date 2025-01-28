@@ -1,0 +1,23 @@
+{% load static %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'money/css/result.css' %}">
+</head>
+
+<body>
+    <div class="contner">
+        <div class="content1">
+            <h2>節約判定</h2>
+            <ul>
+            {% for result in result_list %}
+            
+                <li>{{ result.age_text }}日目
+                    使用金額<form action="" method="post">
+                        {% csrf_token %}
+                        <input type="text" name="amount_{{ result.id }}">
+                    </form>
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
+</body>

@@ -24,6 +24,7 @@ from django.conf.urls.static import static
 app_name = "apps"
 urlpatterns = [
     path("", views.HomeView.as_view(), name="index"),
+    path("money/", include("money.urls")),
     path("login/", include("login.urls")),
     path("admin/", admin.site.urls),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
