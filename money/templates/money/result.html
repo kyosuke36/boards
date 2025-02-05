@@ -1,10 +1,12 @@
+{% extends "base.html" %}
+{% block title %}
+Board | Result
+{% endblock %}
+{% block content %}
+
 {% load static %}
-
-<head>
-    <link rel="stylesheet" href="{% static 'money/css/result.css' %}">
-</head>
-
-<body>
+{% load humanize %}
+<link rel="stylesheet" href="{% static 'money/css/result.css' %}">
     <div class="contner">
         <div class="content1">
             <h2>節約判定</h2>
@@ -12,12 +14,21 @@
             {% for result in result_list %}
             
                 <li>{{ result.age_text }}日目
-                    使用金額<form action="" method="post">
+                    使用金額<form action="{% url 'money:update' result.id %}" method="post">
                         {% csrf_token %}
-                        <input type="text" name="amount_{{ result.id }}">
+                        <input type="text" name="amount" value="{{ result.age_nam|intcomma }}" class="comma-input">
+                        <input type="submit" value="編集">
                     </form>
                 </li>
             {% endfor %}
             </ul>
         </div>
-</body>
+    </div>
+
+    <div class="result-container">
+        <div class="result-item">今までの総使用量: {{ result_nam|intcomma }}円</div>
+        <div class="result-item">達成率: {{ result_active }}%</div>
+    </div>
+    
+<script src="{% static 'money/javascript/result.js' %}"></script>
+{% endblock %}

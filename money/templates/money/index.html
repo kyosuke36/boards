@@ -11,15 +11,26 @@
             <form action="{% url 'money:create' %}" method="post">
                 {% csrf_token %}
                 <fieldset>
-                    節約する目的<input type="text" name="purpose">
-                    継続する日数<select name="day">
-                        <option>7</option>
-                        <option>10</option>
-                        <option>20</option>
-                        <option>30</option>
-                        </select>
-                        日
-                    １日の制限する金額<input type="text" name="text" placeholder="例:1000">円
+                    <fieldset>
+                        <label for="purpose">日記タイトル</label>
+                        <input type="text" name="purpose" id="purpose" placeholder="例: 食費を抑える">
+
+                        <label for="day">継続する日数</label>
+                        <div class="input-group">
+                            <select name="day" id="day">
+                                <option>7</option>
+                                <option>10</option>
+                                <option>20</option>
+                                <option>30</option>
+                            </select>
+                            <span class="unit">日</span>
+                        </div>
+                
+                        <label for="amount">1日の制限する金額</label>
+                        <div class="input-group">
+                            <input type="text" name="text" id="amount" placeholder="例:1000">
+                            <span class="unit">円</span>
+                        </div>
                 </fieldset>
                 <input type="submit" value="登録">
             </form>
